@@ -2,9 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Home/しっかりタスク</title>
 </head>
 <body>
+	<div id=hedder>
+		<h1>しっかりタスク</h1>
+	</div>
+	<main>
+		<h2>-HOME-</h2>
+		<p>こんにちは</p>
+		<p>[[${@account.name}]]さん</p>
+		<a href="" id="jumpURL">タスク一覧</a>
+		<a href="" id="jumpURL">カレンダー</a>
+		<a href="" id="jumpURL">タスク新規登録</a>
+		<a href="" id="jumpURL">カテゴリー一覧</a>
+		<a href="/users/view" id="jumpURL">ユーザー情報</a>
+		<a href="/users/logout" id="jumpURL">ログアウト</a>
+	</main>
 
 </body>
 </html>

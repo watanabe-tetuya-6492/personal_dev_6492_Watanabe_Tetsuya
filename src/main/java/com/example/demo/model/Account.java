@@ -1,26 +1,33 @@
 package com.example.demo.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
-
-import com.example.demo.entity.User;
 
 @Component
 @SessionScope
 
 public class Account {
-	private List<User>userList=new ArrayList<>();
-
-	public List<User> getUserList() {
-		return userList;
+	private Integer id;
+	private String name;
+	private String email;
+	public Integer getId() {
+		return id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public void setUserList(List<User> userList) {
-		this.userList = userList;
-	}
-	
 	
 }

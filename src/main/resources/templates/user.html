@@ -2,9 +2,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>しっかりタスク</title>
 </head>
 <body>
-
+	<div id=hedder>
+		<h1>しっかりタスク</h1>
+	</div>
+	<main>
+		<h2>ログイン</h2>
+		<ul th:each="error:${error}" id="alert">
+			<li th:text="${error}"></li>
+		</ul>
+		<form action="/login" method="post">
+			<input type="text" name="email" th:value="${email}">
+			<p></p>
+			<input type="text" name="password">
+			<p></p>
+			<button id="button">ログイン</button>
+			<p></p>
+			<a href="/users/new">ユーザー新規登録</a>
+		</form>
+	</main>
 </body>
 </html>

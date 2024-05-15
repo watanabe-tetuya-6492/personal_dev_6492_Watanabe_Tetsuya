@@ -2,9 +2,44 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ユーザー情報編集/しっかりタスク</title>
 </head>
 <body>
-
+	<div id=hedder>
+		<h1>しっかりタスク</h1>
+	</div>
+	<main>
+		<ul th:each="error:${error}" id="alert">
+			<li th:text="${error}"></li>
+		</ul>
+		<form action="/users/update" method="post">
+			<table border="1">
+				<tr>
+					<th>ID</th>
+					<td th:text="${@account.id}"></tdth>
+				</tr>
+				<tr>
+					<th>名前</th>
+					<td>
+						<input type="text" name="name" th:value="${user.name}">
+					</td>
+				</tr>
+				<tr>
+					<th>メールアドレス</th>
+					<td>
+						<input type="text" name="email" th:value="${user.email}">
+					</td>
+				</tr>
+				<tr>
+					<th>パスワード</th>
+					<td>
+						<input type="text" name="password" th:value="${user.password}">
+					</td>
+				</tr>
+			</table>
+			<button>更新</button>
+		</form>
+		<a href="/users/delete">ユーザー情報削除</a>
+	</main>
 </body>
 </html>
