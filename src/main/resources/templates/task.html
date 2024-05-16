@@ -2,9 +2,42 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>タスク一覧</title>
 </head>
 <body>
-
+	<div id="headder">
+	<h1>しっかりタスク</h1>
+	</div>
+	<h2>タスク一覧</h2>
+	<a href="/home">ホーム</a>
+	<a href="/tasks/new">タスク新規登録</a>
+	<main>
+		<table border="1">
+			<tr>
+				<th>タスクID</th>
+				<th>タイトル</th>
+				<th>カテゴリ</th>
+				<th>期限</th>
+				<th>実施状況</th>
+				<th>更新</th>
+				<th>削除</th>
+			</tr>
+			<tr th:each="task:${taskList}">
+				<td th:text="${task.id}"></td>
+				<td th:text="${task.title}"></td>
+				<td th:text="${task.category.name}"></td>
+				<td th:text="${task.closingDate}"></td>
+				<td th:switch="${task.progress}">
+					<span th:case=0 th:text="未着手"></span>
+					<span th:case=0 th:text="進行中"></span>
+					<span th:case=0 th:text="完了"></span>
+				</td>
+				<td>
+					<form><button>更新</button></form>
+				</td>
+				<td><form><button>削除</button></form></td>
+			</tr>
+		</table>
+	</main>
 </body>
 </html>

@@ -21,4 +21,14 @@ public class Category {
 		this.id=id;
 		this.name=name;
 	}
+	public Category(String name) {
+		this.name=name;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public String getName() {
+		return name;
+	}
+	
 }

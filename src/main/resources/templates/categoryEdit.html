@@ -2,9 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>カテゴリ編集/しっかりタスク</title>
 </head>
 <body>
-
+	<div id="headder">
+	<h1>しっかりタスク</h1>
+	</div>
+	<h2>カテゴリ編集</h2>
+	<main>
+		<ul th:each="errormsg:${error}">
+			<li th:text="${errormsg}"></li>
+		</ul>
+		<form th:action="@{/categories/{id}/update(id=${category.id})}" method="post">
+			<table border="1">
+				<tr>
+					<th>カテゴリID</th>
+					<td th:text="${category.id}"></td>
+				</tr>
+				<tr>
+					<th>カテゴリ名</th>
+					<td>
+						<input type="text" name="name" th:value="${category.name}">
+					</td>
+				</tr>
+			</table>
+			<button>更新</button>
+		</form>
+	</main>
 </body>
 </html>
