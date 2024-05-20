@@ -2,12 +2,49 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>タスク更新/しっかりタスク</title>
 </head>
 <body>
 	<div id="headder">
 	<h1>しっかりタスク</h1>
 	</div>
+	<h2>タスク更新</h2>
+	
+	<form th:action="@{/tasks/{id}/update(id=${id})}" method="post">
+		<table border="1">
+			<tr>
+				<th>カテゴリー</th>
+				<td>
+					<select name="category">
+						<option th:value="${category.id}" th:text="${category.name}" selected></option>
+						<th:block th:each="categories:${categoryList}">
+						<option th:value="${categories.id}" th:text="${categories.name}"></option>
+						</th:block>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>タイトル</th>
+				<td>
+					<input type="text" name="title" th:value="${task.title}" required>
+				</td>
+			</tr>
+			<tr>
+				<th>期限</th>
+				<td>
+					<input type="date" name="closingDate" th:value="${task.closingDate}" required>
+				</td>
+			</tr>
+			<tr>
+				<th>メモ</th>
+				<td>
+					<input type="text" name="memo" th:value="${task.memo}" required>
+				</td>
+			</tr>
+		</table>
+		<input type="hidden" name="progress" th:value="${task.progress}">
+		<button>更新</button>
+	</form>
 
 </body>
 </html>

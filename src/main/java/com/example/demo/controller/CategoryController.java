@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Category;
+import com.example.demo.entity.Task;
 import com.example.demo.repository.CategoryRepository;
+import com.example.demo.repository.TaskRepository;
 
 @Controller
 public class CategoryController {
 	@Autowired
 	CategoryRepository categoryRepository;
+	@Autowired
+	TaskRepository taskRepository;
 	@GetMapping("/categories")
 	public String index(Model model) {
 		List<Category>categoryList=categoryRepository.findAllByOrderByIdAsc();
@@ -29,7 +33,16 @@ public class CategoryController {
 		return "categoryAdd";
 	}
 	@GetMapping("/categories/{id}/delete")
-	public String delete(@PathVariable("id")Integer id) {
+	public String delete(@PathVariable("id")Integer id,Model model) {
+		List<String>errorList=new ArrayList<String>();
+		List<Task>taskList=taskRepository.findByCategoryId(id);
+		if(taskList.size()!=0) {
+			errorList.add("カテゴリーが使用されています");
+			model.addAttribute("error",errorList);
+			List<Category>categoryList=categoryRepository.findAllByOrderByIdAsc();
+			model.addAttribute("categoryList",categoryList);
+			return "category";
+		}
 		categoryRepository.deleteById(id);
 		return "redirect:/categories";
 	}

@@ -14,6 +14,9 @@
 	<form action="/categories/new" method="">
 	<button id="outbutton">新規登録</button>
 	</form>
+	<ul th:each="errormsg:${error}">
+			<li th:text="${errormsg}"></li>
+	</ul>
 	
 	<table th:if="${categoryList}" border="1">
 		

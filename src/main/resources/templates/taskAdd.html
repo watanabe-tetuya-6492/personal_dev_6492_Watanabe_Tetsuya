@@ -11,6 +11,9 @@
 	<h2>新規タスク追加</h2>
 	<a href="/home">ホーム</a>
 	<a href="/tasks">タスク一覧</a>
+	<ul th:each="errormsg:${error}">
+			<li th:text="${errormsg}"></li>
+		</ul>
 	<form action="/tasks/add" method="post">
 		<table border="1">
 			<tr>
@@ -26,19 +29,19 @@
 			<tr>
 				<th>タイトル</th>
 				<td>
-					<input type="text" name="title">
+					<input type="text" name="title" required>
 				</td>
 			</tr>
 			<tr>
 				<th>期限</th>
 				<td>
-					<input type="date" name="closingDate">
+					<input type="date" name="closingDate" required>
 				</td>
 			</tr>
 			<tr>
 				<th>メモ</th>
 				<td>
-					<input type="text" name="memo">
+					<input type="text" name="memo" required>
 				</td>
 			</tr>
 		</table>

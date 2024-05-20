@@ -10,6 +10,14 @@
 	</div>
 	<h2>タスク一覧</h2>
 	<a href="/home">ホーム</a>
+	<div id="taskset">
+		<a href="/tasks">全体表示</a>
+		｜
+		<span th:each="category:${categoryList}">
+			<a th:href="@{/tasks/{id}(id=${category.id})}" th:text="${category.name}"></a>
+			｜
+		</span>
+	</div>
 	<a href="/tasks/new">タスク新規登録</a>
 	<main>
 		<table border="1">
@@ -21,6 +29,8 @@
 				<th>実施状況</th>
 				<th>更新</th>
 				<th>削除</th>
+				<th>進展</th>
+				<th>後退</th>
 			</tr>
 			<tr th:each="task:${taskList}">
 				<td th:text="${task.id}"></td>
@@ -33,9 +43,16 @@
 					<span th:case=0 th:text="完了"></span>
 				</td>
 				<td>
-					<form><button>更新</button></form>
+					<form th:action="@{/tasks/{id}/edit(id=${task.id})}"><button>更新</button></form>
 				</td>
-				<td><form><button>削除</button></form></td>
+				<td><form th:action="@{/tasks/{id}/delete(id=${task.id})}" method="post"><button>削除</button></form></td>
+<!--				<td>-->
+<!--					<form th:action="@{/tasks/{id}/increase(id=${task.id})}" method="post">-->
+<!--						<input type="hidden" name="">-->
+<!--						<button>進展</button>-->
+<!--					</form>-->
+<!--				</td>-->
+<!--				<td><form th:action="@{/tasks/{id}/decrease(id=${task.id})}" method="post"><button>後退</button></form></td>-->
 			</tr>
 		</table>
 	</main>
