@@ -1,0 +1,84 @@
+@charset "UTF-8";
+main{
+	text-align: center;
+}
+table{
+	margin-left: auto;
+	margin-right: auto;
+	width: 75%;
+}
+.propaty {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 350px; /* ボタン幅 */
+  padding: 1em 2em;
+  background: rgb(23, 23, 23); /* 背景色 */
+  text-decoration: none;
+  border-radius: 0.5em;
+  color: #fff; /* 文字色 */
+  box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  text-align: center; /* 文字の太さ */
+}
+th{
+	background-color: black;
+	color: white;
+}
+
+/* マウスオーバーした際のデザイン */
+.propaty:before {
+  position: absolute;
+  content: '';
+  height: 0;
+  width: 0;
+  top: 0;
+  left: 0;
+  background: linear-gradient(135deg, rgb(255 255 255) 0%, rgb(255 255 255) 50%, #B476CE 50%, #B476CE 60%); /* めくれた色 */
+  border-radius: 0 0 0.5em 0;
+  box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
+}
+.propaty:hover:before {
+  width: 2em;
+  height: 2em;
+}
+
+/* クリックした際のデザイン */
+.propaty:active {
+  box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 0, 0.3);
+  transform: translate(1px, 1px);
+}
+.add {
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	width: 200px;
+	margin: auto;
+	margin-top:15px;
+	padding: 1rem 4rem;
+	font-weight: bold;
+	border: 2px solid rgb(0, 0, 0);
+	background: rgb(0, 0, 0);
+	color: rgb(255, 255, 255);
+	border-radius: 100vh;
+	transition: 0.5s;
+}
+.add:hover {
+	color: rgb(0, 0, 0);
+	background: rgb(255, 255, 255);
+}
+#hello{
+	font-size: 150%;
+}
+#user{
+	font-weight: bold;
+	font-size: 200%;
+}
+input{
+	width: 90%;
+}
+select{
+	width:90%;
+}
+

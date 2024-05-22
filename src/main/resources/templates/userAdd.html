@@ -3,11 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <title>ユーザー登録/しっかりタスク</title>
+<link rel="stylesheet" type="text/css" href="/css/header.css">
+<link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
-	<div id="hedder">
 		<h1>しっかりタスク</h1>
-	</div>
+		<div class="headlink">
+		<a href="/" class="a">ログイン</a>
+		</div>
 	<main>
 		<h2>ユーザー新規登録</h2>
 		<ul th:each="error:${error}" id="alert">

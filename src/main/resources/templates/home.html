@@ -3,21 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Home/しっかりタスク</title>
+<link rel="stylesheet" type="text/css" href="/css/header.css">
+<link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
-	<div id=hedder>
 		<h1>しっかりタスク</h1>
-	</div>
+		<div class="headlink">
+		<a href="/tasks" class="a">タスク一覧</a>
+		｜
+		<a href="/calender" class="a">カレンダー</a>
+		｜
+		<a href="/tasks/new" class="a">タスク新規登録</a>
+		｜
+		<a href="/categories" class="a">カテゴリー一覧</a>
+		｜
+		<a href="/users/view" class="a">ユーザー情報</a>
+		｜
+		<a href="/users/logout" class="a">ログアウト</a>
+		</div>
 	<main>
 		<h2>-HOME-</h2>
-		<p>こんにちは</p>
-		<p>[[${@account.name}]]さん</p>
-		<a href="/tasks" id="jumpURL">タスク一覧</a>
-		<a href="" id="jumpURL">カレンダー</a>
-		<a href="/tasks/new" id="jumpURL">タスク新規登録</a>
-		<a href="/categories" id="jumpURL">カテゴリー一覧</a>
-		<a href="/users/view" id="jumpURL">ユーザー情報</a>
-		<a href="/users/logout" id="jumpURL">ログアウト</a>
+		<p id="hello">こんにちは</p>
+		<p id="user">[[${@account.name}]]さん</p>
+		
 	</main>
 
 </body>

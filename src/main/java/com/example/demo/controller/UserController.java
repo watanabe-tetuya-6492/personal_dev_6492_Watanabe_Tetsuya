@@ -150,6 +150,7 @@ public class UserController {
 		List<String>errorList=new ArrayList<String>();
 		User user=new User(id,name,email,password);
 		
+		
 		List<User>userA=userRepository.findByEmailLike(email);
 		if(name.length()==0||name.equals(null)) {
 			errorList.add("名前を入力してください");

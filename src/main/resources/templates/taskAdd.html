@@ -3,14 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <title>タスク新規登録/しっかりタスク</title>
+<link rel="stylesheet" type="text/css" href="/css/header.css">
+<link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
 	<div id="headder">
 	<h1>しっかりタスク</h1>
+	<div class="headlink">
+		<a href="/home" class="a">ホーム</a>
+		｜
+		<a href="/tasks" class="a">タスク一覧</a>
+		｜
+		<a href="/calender" class="a">カレンダー</a>
+		｜
+		<a href="/tasks/new" class="a">タスク新規登録</a>
+		｜
+		<a href="/categories" class="a">カテゴリー一覧</a>
+		｜
+		<a href="/users/view" class="a">ユーザー情報</a>
+		｜
+		<a href="/users/logout" class="a">ログアウト</a>
 	</div>
+	</div>
+	<main>
 	<h2>新規タスク追加</h2>
-	<a href="/home">ホーム</a>
-	<a href="/tasks">タスク一覧</a>
+	
 	<ul th:each="errormsg:${error}">
 			<li th:text="${errormsg}"></li>
 		</ul>
@@ -35,7 +52,7 @@
 			<tr>
 				<th>期限</th>
 				<td>
-					<input type="date" name="closingDate" required>
+					<input type="date" name="closingDate" th:value="${date}" required>
 				</td>
 			</tr>
 			<tr>
@@ -45,7 +62,8 @@
 				</td>
 			</tr>
 		</table>
-		<button>追加</button>
+		<button class="add">追加</button>
 	</form>
+	</main>
 </body>
 </html>

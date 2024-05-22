@@ -1,0 +1,119 @@
+@charset "UTF-8";
+main{
+	text-align: center;
+}
+
+table{
+	margin-left: auto;
+	margin-right: auto;
+}
+.day {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 350px; /* ボタン幅 */
+  padding: 1em 2em;
+  background: #B476CE; /* 背景色 */
+  text-decoration: none;
+  border-radius: 0.5em;
+  color: #fff; /* 文字色 */
+  box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  text-align: center; /* 文字の太さ */
+}
+th{
+	background-color: black;
+	color: white;
+}
+
+/* マウスオーバーした際のデザイン */
+.day:before {
+  position: absolute;
+  content: '';
+  height: 0;
+  width: 0;
+  top: 0;
+  left: 0;
+  background: linear-gradient(135deg, rgb(255 255 255) 0%, rgb(255 255 255) 50%, #B476CE 50%, #B476CE 60%); /* めくれた色 */
+  border-radius: 0 0 0.5em 0;
+  box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
+}
+.day:hover:before {
+  width: 2em;
+  height: 2em;
+}
+
+/* クリックした際のデザイン */
+.day:active {
+  box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 0, 0.3);
+  transform: translate(1px, 1px);
+}
+.satday{
+	position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 350px; /* ボタン幅 */
+  padding: 1em 2em;
+  background: #B476CE; /* 背景色 */
+  text-decoration: none;
+  border-radius: 0.5em;
+  box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  text-align: center;
+	color: darkblue;
+}
+.satday:before {
+  position: absolute;
+  content: '';
+  height: 0;
+  width: 0;
+  top: 0;
+  left: 0;
+  background: linear-gradient(135deg, rgb(255 255 255) 0%, rgb(255 255 255) 50%, #B476CE 50%, #B476CE 60%); /* めくれた色 */
+  border-radius: 0 0 0.5em 0;
+  box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
+}
+.satday:hover:before {
+  width: 2em;
+  height: 2em;
+}
+.sunday{
+	position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 350px; /* ボタン幅 */
+  padding: 1em 2em;
+  background: #B476CE; /* 背景色 */
+  text-decoration: none;
+  border-radius: 0.5em;
+  box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  text-align: center;
+	color:darkred;
+}
+.sunday:before {
+  position: absolute;
+  content: '';
+  height: 0;
+  width: 0;
+  top: 0;
+  left: 0;
+  background: linear-gradient(135deg, rgb(255 255 255) 0%, rgb(255 255 255) 50%, #B476CE 50%, #B476CE 60%); /* めくれた色 */
+  border-radius: 0 0 0.5em 0;
+  box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
+}
+.sunday:hover:before {
+  width: 2em;
+  height: 2em;
+}
+.taskthere{
+	color: darkgreen;
+	font-weight: bold;
+	background-color: lightblue;
+}
+.tasknone{
+	color: black;
+}

@@ -3,14 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <title>ユーザー情報編集/しっかりタスク</title>
+<link rel="stylesheet" type="text/css" href="/css/header.css">
+<link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
-	<div id=hedder>
-		<h1>しっかりタスク</h1>
+	<h1>しっかりタスク</h1>
+	<div class="headlink">
+		<a href="/home" class="a">ホーム</a>
+		｜
+		<a href="/tasks" class="a">タスク一覧</a>
+		｜
+		<a href="/calender" class="a">カレンダー</a>
+		｜
+		<a href="/tasks/new" class="a">タスク新規登録</a>
+		｜
+		<a href="/categories" class="a">カテゴリー一覧</a>
+		｜
+		<a href="/users/view" class="a">ユーザー情報</a>
+		｜
+		<a href="/users/logout" class="a">ログアウト</a>
 	</div>
-	<h2>ユーザー情報編集</h2>
-	<a href="/home">ホーム</a>
+	
+	
+	
 	<main>
+		<h2>ユーザー情報編集</h2>
 		<ul th:each="error:${error}" id="alert">
 			<li th:text="${error}"></li>
 		</ul>
@@ -39,9 +56,9 @@
 					</td>
 				</tr>
 			</table>
-			<button>更新</button>
+			<button class="add">更新</button>
 		</form>
-		<a href="/users/delete">ユーザー情報削除</a>
+		<a href="/users/delete" class="add">ユーザー情報削除</a>
 	</main>
 </body>
 </html>
