@@ -13,17 +13,19 @@
 		<ul th:each="error:${error}" id="alert">
 			<li th:text="${error}"></li>
 		</ul>
-		<form action="/login" method="post">
+		<div id="box">
+		<form action="/login" method="post" id="logbox">
 			<p>メールアドレス</p>
 			<input type="text" name="email" th:value="${email}">
 			<p></p>
 			<p>パスワード</p>
 			<input type="text" name="password">
 			<p></p>
-			<button id="button">ログイン</button>
+			<button class="add">ログイン</button>
 			<p></p>
 			<a href="/users/new">ユーザー新規登録</a>
 		</form>
+		</div>
 	</main>
 </body>
 </html>

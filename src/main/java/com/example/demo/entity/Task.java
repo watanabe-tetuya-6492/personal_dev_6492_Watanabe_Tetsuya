@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,9 +27,14 @@ public class Task {
 	private LocalDate closingDate;
 	private Integer progress;
 	private String memo;
-	@ManyToOne
+	@ManyToOne(fetch = 
+			FetchType.EAGER)
 	@JoinColumn(name="category_id",insertable=false, updatable=false)
 	private Category category;
+	@ManyToOne(fetch = 
+			FetchType.EAGER)
+	@JoinColumn(name="user_id",insertable=false, updatable=false)
+	private User user;
 	
 	public Task() {
 	}
@@ -85,6 +91,9 @@ public class Task {
 	}
 	public Category getCategory() {
 		return category;
+	}
+	public User getUser() {
+		return user;
 	}
 	
 

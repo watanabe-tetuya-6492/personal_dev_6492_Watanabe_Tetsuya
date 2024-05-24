@@ -35,7 +35,7 @@ public class TaskController {
 	@GetMapping("/tasks")
 	public String index(Model model) {
 		List<String>errorList=new ArrayList<>();
-		List<Task>taskList=taskRepository.findAll();
+		List<Task>taskList=taskRepository.findAllByOrderByIdAsc();
 		List<Category>categoryList=categoryRepository.findAll();
 		if(taskList.size()==0) {
 			errorList.add("タスクがありません。新規登録をお願いいたします。");
@@ -88,12 +88,25 @@ public class TaskController {
 		model.addAttribute("id",id);
 		return "taskEdit";
 	}
+	@GetMapping("/tasks/{id}/dateedit")
+	public String taskdateEdit(
+			@PathVariable("id")Integer id,
+			Model model) {
+		Task task=taskRepository.findById(id).get();
+		Category category=categoryRepository.findById(task.getCategoryId()).get();
+		List<Category>categoryList=categoryRepository.findByNameNotLike(category.getName());
+		model.addAttribute("categoryList",categoryList);
+		model.addAttribute("category",category);
+		model.addAttribute(task);
+		model.addAttribute("id",id);
+		return "taskdateEdit";
+	}
 	@GetMapping("/tasks/{date}/editcalender")
 	public String dateTaskList(
 			@PathVariable("date")LocalDate date,
 			Model model) {
 		List<String>errorList=new ArrayList<>();
-		List<Task>taskList=taskRepository.findByClosingDate(date);
+		List<Task>taskList=taskRepository.findByClosingDateOrderByIdAsc(date);
 		List<Category>categoryList=categoryRepository.findAll();
 		if(taskList.size()==0) {
 			errorList.add("タスクがありません。新規登録をお願いいたします。");
@@ -103,6 +116,7 @@ public class TaskController {
 			return "taskAdd";
 		}
 		model.addAttribute("taskList",taskList);
+		model.addAttribute("date",date);
 		return "dateTaskList";
 	}
 	
@@ -133,6 +147,44 @@ public class TaskController {
 		
 		return "redirect:/tasks";
 	}
+	@GetMapping("/tasks/{id}/dateincrease")
+	public String dateincrease(
+			@PathVariable("id")Integer id,
+			@RequestParam("categoryId")Integer categoryId,
+			@RequestParam("userId")Integer userId,
+			@RequestParam("title")String title,
+			@RequestParam("closingDate")LocalDate closingDate,
+			@RequestParam("progress")Integer progress,
+			@RequestParam("memo")String memo,
+			Model model){
+		Integer increasedProgress;
+		if(progress<2) {
+		increasedProgress =progress+1;
+		}else {
+			return "redirect:/tasks/"+ closingDate +"/editcalender";
+		}
+		Task upgradeTask=new Task(
+				id,
+				categoryId,
+				userId,
+				title,
+				closingDate,
+				increasedProgress,
+				memo);
+		taskRepository.save(upgradeTask);
+		List<Category>categoryList=categoryRepository.findAll();
+		List<Task>taskList=taskRepository.findByClosingDate(closingDate);
+		
+		
+		model.addAttribute("taskList",taskList);
+		model.addAttribute("categoryList",categoryList);
+		model.addAttribute("date",closingDate);
+		
+		
+		return "redirect:/tasks/"+ closingDate +"/editcalender";
+	}
+	
+	
 	@GetMapping("/tasks/{id}/decrease")
 	public String decrease(@PathVariable("id")Integer id,
 			@RequestParam("categoryId")Integer categoryId,
@@ -158,6 +210,33 @@ public class TaskController {
 		taskRepository.save(upgradeTask);
 		return "redirect:/tasks";
 	}
+	@GetMapping("/tasks/{id}/datedecrease")
+	public String datedecrease(@PathVariable("id")Integer id,
+			@RequestParam("categoryId")Integer categoryId,
+			@RequestParam("userId")Integer userId,
+			@RequestParam("title")String title,
+			@RequestParam("closingDate")LocalDate closingDate,
+			@RequestParam("progress")Integer progress,
+			@RequestParam("memo")String memo,
+			Model model){
+		Integer decreasedProgress;
+		if(progress>0){
+			decreasedProgress =progress-1;
+			}else {
+				return "redirect:/tasks/"+ closingDate +"/editcalender";
+			}
+		Task upgradeTask=new Task(
+				id,
+				categoryId,
+				userId,
+				title,
+				closingDate,
+				decreasedProgress,
+				memo);
+		taskRepository.save(upgradeTask);
+		return "redirect:/tasks/"+ closingDate +"/editcalender";
+	}
+	
 	//カレンダー出力
 	@GetMapping("/calender")
 	public String calenderShow(Model model) {
@@ -535,20 +614,26 @@ public class TaskController {
 	public String taskUpdate(
 			@PathVariable("id")Integer id,
 			@RequestParam("category")Integer categoryId,
+			@RequestParam("userId")Integer userId,
 			@RequestParam("title")String title,
 			@RequestParam("closingDate")LocalDate closingDate,
 			@RequestParam("progress")Integer progress,
 			@RequestParam("memo")String memo,
+			@RequestParam("handover")int handover,
 			Model model) {
-		Integer userId = account.getId();
+		Integer updateuserId = account.getId();
 		List<String>errorList=new ArrayList<>();
-		userId=account.getId();
 		if(id==null) {
 			errorList.add("ログインされていません");
 			model.addAttribute("error",errorList);
 			return "user";
 		}
-		Task task = new Task(id,categoryId,userId,title,closingDate,progress,memo);
+		Task task;
+		if(handover==1) {
+			task = new Task(id,categoryId,updateuserId,title,closingDate,progress,memo);
+		}else {
+		task = new Task(id,categoryId,userId,title,closingDate,progress,memo);
+		}
 		taskRepository.save(task);
 		return "redirect:/tasks";
 	}
@@ -557,6 +642,40 @@ public class TaskController {
 			@PathVariable("id")Integer id) {
 		taskRepository.deleteById(id);
 		return "redirect:/tasks";
+	}
+	@PostMapping("/tasks/{id}/dateupdate")
+	public String taskdateUpdate(
+			@PathVariable("id")Integer id,
+			@RequestParam("category")Integer categoryId,
+			@RequestParam("userId")Integer userId,
+			@RequestParam("title")String title,
+			@RequestParam("closingDate")LocalDate closingDate,
+			@RequestParam("progress")Integer progress,
+			@RequestParam("memo")String memo,
+			@RequestParam("handover")int handover,
+			Model model) {
+		Integer updateuserId = account.getId();
+		List<String>errorList=new ArrayList<>();
+		if(id==null) {
+			errorList.add("ログインされていません");
+			model.addAttribute("error",errorList);
+			return "user";
+		}
+		Task task;
+		if(handover==1) {
+			task = new Task(id,categoryId,updateuserId,title,closingDate,progress,memo);
+		}else {
+		task = new Task(id,categoryId,userId,title,closingDate,progress,memo);
+		}
+		taskRepository.save(task);
+		return "redirect:/tasks/"+ closingDate +"/editcalender";
+	}
+	@PostMapping("/tasks/{id}/datedelete")
+	public String taskdateDelete(
+			@PathVariable("id")Integer id,
+			@RequestParam("closingDate")LocalDate closingDate) {
+		taskRepository.deleteById(id);
+		return "redirect:/tasks/"+ closingDate +"/editcalender";
 	}
 	
 }

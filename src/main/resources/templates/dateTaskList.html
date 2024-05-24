@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div id="headder">
-	<h1>しっかりタスク</h1>
+	<a href="/home" id="headder"><h1>しっかりタスク</h1></a>
 	<div class="headlink">
 		<a href="/home" class="a">ホーム</a>
 		｜
@@ -30,6 +30,7 @@
 		<table border="1">
 			<tr>
 				<th>タスクID</th>
+				<th>実施者</th>
 				<th>タイトル</th>
 				<th>カテゴリ</th>
 				<th>期限</th>
@@ -41,6 +42,7 @@
 			</tr>
 			<tr th:each="task:${taskList}">
 				<td th:text="${task.id}"></td>
+				<td th:text="${task.user.name}"></td>
 				<td th:text="${task.title}"></td>
 				<td th:text="${task.category.name}"></td>
 				<td th:text="${task.closingDate}"></td>
@@ -50,11 +52,13 @@
 					<span th:case=2 th:text="完了"></span>
 				</td>
 				<td>
-					<form th:action="@{/tasks/{id}/edit(id=${task.id})}"><button class="propaty">更新</button></form>
+					<form th:action="@{/tasks/{id}/dateedit(id=${task.id})}"><button class="propaty">更新</button></form>
 				</td>
-				<td><form th:action="@{/tasks/{id}/delete(id=${task.id})}" method="post"><button class="propaty">削除</button></form></td>
+				<td><form th:action="@{/tasks/{id}/datedelete(id=${task.id})}" method="post">
+					<input type="hidden" name="closingDate" th:value="${task.closingDate}">
+					<button class="propaty">削除</button></form></td>
 				<td>
-					<form th:action="@{/tasks/{id}/increase(id=${task.id})}" method="get">
+					<form th:action="@{/tasks/{id}/dateincrease(id=${task.id})}" method="get">
 						<input type="hidden" name="categoryId" th:value=${task.categoryId}>
 						<input type="hidden" name="userId" th:value="${task.userId}">
 						<input type="hidden" name="title" th:value="${task.title}">
@@ -64,7 +68,7 @@
 						<button class="propaty">進展</button>
 					</form>
 				</td>
-				<td><form th:action="@{/tasks/{id}/decrease(id=${task.id})}" method="get">
+				<td><form th:action="@{/tasks/{id}/datedecrease(id=${task.id})}" method="get">
 						<input type="hidden" name="categoryId" th:value=${task.categoryId}>
 						<input type="hidden" name="userId" th:value="${task.userId}">
 						<input type="hidden" name="title" th:value="${task.title}">

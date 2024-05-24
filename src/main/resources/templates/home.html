@@ -26,6 +26,22 @@
 		<p id="hello">こんにちは</p>
 		<p id="user">[[${@account.name}]]さん</p>
 		
+		<table border="1">
+			<tr><th>タスクの実施状況</th></tr>
+			<tr>
+				<th>未実施</th>
+				<td th:text="${none}"></td>
+			</tr>
+			<tr>
+				<th>進行中</th>
+				<td th:text="${pro}"></td>
+			</tr>
+			<tr>
+				<th>完了</th>
+				<td th:text="${per}"></td>
+			</tr>
+		</table>
+		
 	</main>
 
 </body>

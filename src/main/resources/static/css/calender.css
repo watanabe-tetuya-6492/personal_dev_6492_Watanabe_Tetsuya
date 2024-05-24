@@ -6,6 +6,7 @@ main{
 table{
 	margin-left: auto;
 	margin-right: auto;
+	width: 80%;
 }
 .day {
   position: relative;
@@ -109,11 +110,18 @@ th{
   width: 2em;
   height: 2em;
 }
-.taskthere{
-	color: darkgreen;
-	font-weight: bold;
+form{
 	background-color: lightblue;
 }
+.taskthere{
+	margin:0;
+	padding:0;
+	color: darkgreen;
+	font-weight: bold;
+	background-color: lightcoral;
+}
 .tasknone{
+	margin:0;
+	padding:0;
 	color: black;
 }

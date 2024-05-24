@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
-	<h1>しっかりタスク</h1>
+	<a href="/home" id="headder"><h1>しっかりタスク</h1></a>
 	<div class="headlink">
 		<a href="/home" class="a">ホーム</a>
 		｜
@@ -35,6 +35,7 @@
 		<table border="1">
 			<tr>
 				<th>タスクID</th>
+				<th>実施者</th>
 				<th>タイトル</th>
 				<th>カテゴリ</th>
 				<th>期限</th>
@@ -44,8 +45,9 @@
 				<th>進展</th>
 				<th>後退</th>
 			</tr>
-			<tr th:each="task:${taskList}">
+			<tr th:each="task:${taskList}" class="tdc">
 				<td th:text="${task.id}"></td>
+				<td th:text="${task.user.name}"></td>
 				<td th:text="${task.title}"></td>
 				<td th:text="${task.category.name}"></td>
 				<td th:text="${task.closingDate}"></td>

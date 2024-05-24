@@ -13,7 +13,7 @@ table{
   width: 100%;
   max-width: 350px; /* ボタン幅 */
   padding: 1em 2em;
-  background: rgb(23, 23, 23); /* 背景色 */
+  background: rgb(0, 0, 64); /* 背景色 */
   text-decoration: none;
   border-radius: 0.5em;
   color: #fff; /* 文字色 */
@@ -22,8 +22,8 @@ table{
   text-align: center; /* 文字の太さ */
 }
 th{
-	background-color: black;
-	color: white;
+	background-color: rgb(251, 152, 32);
+	color: rgb(0, 0, 0);
 }
 
 /* マウスオーバーした際のデザイン */
@@ -82,3 +82,37 @@ select{
 	width:90%;
 }
 
+#box{
+	margin-right: auto;
+	margin-left: auto;
+	width: 500px;
+
+    position: relative;
+    padding: 0.5em 1.5em;
+    border-top: solid 4px black;
+    border-bottom: solid 4px black;
+}
+#box:before, #box:after{
+    content: '';
+    position: absolute;
+    top: -10px;
+    width: 4px;
+    height: -webkit-calc(100% + 20px);
+    height: calc(100% + 20px);
+    background-color: black;
+}
+#box:before {left: 20px;}
+#box:after {right: 20px;}
+#box p {
+    margin: 0; 
+    padding: 0;
+}
+#logbox{
+	width: 80%;
+	margin-right: auto;
+	margin-left: auto;
+	
+}
+.tdc{
+	background-color: white;
+}

@@ -28,11 +28,12 @@
 	<main>
 	<h2>タスク更新</h2>
 	
-	<form th:action="@{/tasks/{id}/update(id=${id})}" method="post">
+	<form th:action="@{/tasks/{id}/dateupdate(id=${id})}" method="post">
 		<table border="1">
 			<tr>
 				<th>カテゴリー</th>
 				<td>
+					<input type="hidden" name="userId" th:value="${task.userId}">
 					<select name="category">
 						<option th:value="${category.id}" th:text="${category.name}" selected></option>
 						<th:block th:each="categories:${categoryList}">
@@ -44,7 +45,6 @@
 			<tr>
 				<th>引き継ぎ</th>
 				<td>
-					<input type="hidden" name="userId" th:value="${task.userId}">
 					<select name="handover">
 						<option value=1>引き継ぎ</option>
 						<option value=2 selected>更新のみ</option>

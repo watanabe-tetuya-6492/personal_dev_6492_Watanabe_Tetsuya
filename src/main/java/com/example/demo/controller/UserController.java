@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.Task;
 import com.example.demo.entity.User;
 import com.example.demo.model.Account;
+import com.example.demo.repository.TaskRepository;
 import com.example.demo.repository.UserRepository;
 
 import jakarta.servlet.http.HttpSession;
@@ -24,6 +26,8 @@ public class UserController {
 	HttpSession session;
 	@Autowired
 	Account account;
+	@Autowired
+	TaskRepository taskRepository;
 	//ログイン画面兼セッションリセット
 	@GetMapping({"/","/login"})
 	public String index(Model model) {
@@ -46,12 +50,35 @@ public class UserController {
 	}
 	//ホームに戻る
 	@GetMapping("/home")
-	public String home() {
+	public String home(Model model) {
+		Integer none=0;
+		Integer pro=1;
+		Integer per=2;
+		List<Task>progressListnone=taskRepository.findByProgress(none);
+		List<Task>progressListpro=taskRepository.findByProgress(pro);
+		List<Task>progressListper=taskRepository.findByProgress(per);
+		int nonesize = progressListnone.size();
+		int prosize = progressListpro.size();
+		int persize = progressListper.size();
+		String nonetask=nonesize+"件です";
+		String protask=prosize+"件です";
+		String pertask=persize+"件です";
+		model.addAttribute("none",nonetask);
+		model.addAttribute("pro",protask);
+		model.addAttribute("per",pertask);
 		return "home";
 	}
 	@GetMapping("/users/view")
 	public String usersEdit(Model model) {
 		Integer id=account.getId();
+		List<String>errorList=new ArrayList<>();
+		if (id==null) {
+			errorList.add("ログインされていません");
+		}
+		if(errorList.size()>0) {
+			model.addAttribute("error",errorList);
+			return "user";
+		}
 		User user=userRepository.findById(id).get();
 		model.addAttribute(user);
 		return "userEdit";
@@ -131,7 +158,7 @@ public class UserController {
 			account.setId(userA.getId());
 			account.setName(userA.getName());
 			account.setEmail(email);
-			return "home";
+			return "redirect:/home";
 			}else {
 				errorList.add("パスワードが一致しません");
 			}
