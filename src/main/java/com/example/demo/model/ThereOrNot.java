@@ -24,7 +24,7 @@ public class ThereOrNot {
 		this.wedTON=wedTON;
 		this.thuTON=thuTON;
 		this.friTON=friTON;
-		this.satTON=sunTON;
+		this.satTON=satTON;
 	}
 	public String getSunTON() {
 		return sunTON;

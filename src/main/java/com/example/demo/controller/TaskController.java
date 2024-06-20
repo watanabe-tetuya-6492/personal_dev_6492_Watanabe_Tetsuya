@@ -529,32 +529,32 @@ public class TaskController {
 		}else {
 			sunthereOrNot.add(2);
 		}
-		if(monTask.size()==0||sunTask==null) {
+		if(monTask.size()==0||monTask==null) {
 			monthereOrNot.add(1);
 		}else {
 			monthereOrNot.add(2);
 		}
-		if(tueTask.size()==0||sunTask==null) {
+		if(tueTask.size()==0||tueTask==null) {
 			tuethereOrNot.add(1);
 		}else {
 			tuethereOrNot.add(2);
 		}
-		if(wedTask.size()==0||sunTask==null) {
+		if(wedTask.size()==0||wedTask==null) {
 			wedthereOrNot.add(1);
 		}else {
 			wedthereOrNot.add(2);
 		}
-		if(thuTask.size()==0||sunTask==null) {
+		if(thuTask.size()==0||thuTask==null) {
 			thuthereOrNot.add(1);
 		}else {
 			thuthereOrNot.add(2);
 		}
-		if(friTask.size()==0||sunTask==null) {
+		if(friTask.size()==0||friTask==null) {
 			frithereOrNot.add(1);
 		}else {
 			frithereOrNot.add(2);
 		}
-		if(satTask.size()==0||sunTask==null) {
+		if(satTask.size()==0||satTask==null) {
 			satthereOrNot.add(1);
 		}else {
 			satthereOrNot.add(2);

@@ -116,3 +116,8 @@ select{
 .tdc{
 	background-color: white;
 }
+#alert{
+	color: darkred;
+	font-weight: bold;
+	list-style: none;
+}

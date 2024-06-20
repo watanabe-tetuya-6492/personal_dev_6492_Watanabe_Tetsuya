@@ -37,7 +37,7 @@ public class ToWeek {
 		this.wedTON=wedTON;
 		this.thuTON=thuTON;
 		this.friTON=friTON;
-		this.satTON=sunTON;
+		this.satTON=satTON;
 		this.sun=sun;
 		this.mon=mon;
 		this.tue=tue;
